@@ -1,4 +1,3 @@
 #pragma once
 
-#include <rawrtcc.h>
 @rawrtc_HEADERS_INCLUDE@

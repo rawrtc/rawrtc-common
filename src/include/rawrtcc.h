@@ -1,5 +1,4 @@
 #pragma once
-
 #include <stdbool.h> // bool
 
 // TODO: Make this a build configuration
@@ -42,6 +41,7 @@ enum rawrtc_code {
     RAWRTC_CODE_TRY_AGAIN_LATER,
     RAWRTC_CODE_STOP_ITERATION,
     RAWRTC_CODE_NOT_PERMITTED,
+    RAWRTC_CODE_EXTERNAL_ERROR,
 }; // IMPORTANT: Add translations for new return codes in `utils.c`!
 
 /*
@@ -72,11 +72,6 @@ enum rawrtc_certificate_encode {
 };
 
 
-
-/*
- * Message buffer.
- */
-struct rawrtc_buffered_message;
 
 /*
  * Certificate options.

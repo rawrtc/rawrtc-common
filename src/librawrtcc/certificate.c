@@ -993,15 +993,15 @@ enum rawrtc_code rawrtc_tls_fingerprint_to_certificate_sign_algorithm(
 }
 
 static enum rawrtc_certificate_sign_algorithm const map_enum_certificate_sign_algorithm[] = {
-        RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA256,
-        RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA384,
-        RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA512,
+    RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA256,
+    RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA384,
+    RAWRTC_CERTIFICATE_SIGN_ALGORITHM_SHA512,
 };
 
 static char const * const map_str_certificate_sign_algorithm[] = {
-        "sha-256",
-        "sha-384",
-        "sha-512",
+    "sha-256",
+    "sha-384",
+    "sha-512",
 };
 
 static size_t const map_certificate_sign_algorithm_length =

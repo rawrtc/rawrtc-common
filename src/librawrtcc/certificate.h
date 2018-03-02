@@ -1,5 +1,7 @@
 #pragma once
-#include <openssl/evp.h> // EVP_MAX_MD_SIZE
+#include <openssl/evp.h> // EVP_*
+#include <openssl/x509.h> // X509
+#include <rawrtcc.h>
 
 /*
  * Maximum digest size of certificate fingerprint.

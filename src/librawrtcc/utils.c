@@ -51,6 +51,8 @@ char const* rawrtc_code_to_str(
             return "stop iteration";
         case RAWRTC_CODE_NOT_PERMITTED:
             return "not permitted";
+        case RAWRTC_CODE_EXTERNAL_ERROR:
+            return "external callback error-ed";
         default:
             return "(no error translation)";
     }
@@ -237,22 +239,6 @@ enum rawrtc_code rawrtc_colon_hex_to_bin(
     // Done
     *bytes_written = bin_length;
     return RAWRTC_CODE_SUCCESS;
-}
-
-/*
- * Get the corresponding address family name for an DNS type.
- */
-char const * const rawrtc_dns_type_to_address_family_name(
-        uint_fast16_t const dns_type
-) {
-    switch (dns_type) {
-        case DNS_TYPE_A:
-            return "IPv4";
-        case DNS_TYPE_AAAA:
-            return "IPv6";
-        default:
-            return "???";
-    }
 }
 
 /*

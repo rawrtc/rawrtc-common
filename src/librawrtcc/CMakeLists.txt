@@ -33,7 +33,7 @@ endforeach ()
 configure_file(${CMAKE_SOURCE_DIR}/src/include/rawrtcc_internal.h.cmakein
         ${internal_header_file} @ONLY)
 install(FILES ${rawrtcc_HEADERS} DESTINATION include/rawrtcc/internal)
-install(FILES ${internal_header_file} DESTINATION include/rawrtcc/internal)
+install(FILES ${internal_header_file} DESTINATION include)
 
 # Generate pkg-config file & install it
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pkg-config.pc.cmakein
