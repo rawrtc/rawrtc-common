@@ -40,6 +40,6 @@
 /docs/_xml
 
 # Generated files
-/src/include/rawrtcc_internal.h
+/src/include/rawrtcc_configuration.h
 /docs/Doxyfile
 /docs/conf.py

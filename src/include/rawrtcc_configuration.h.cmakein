@@ -1,0 +1,7 @@
+#pragma once
+
+// Enable C99 'inttypes' in re
+#define HAVE_INTTYPES_H
+
+// Set the debug level
+#define RAWRTC_DEBUG_LEVEL @DEBUG_LEVEL@

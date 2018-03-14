@@ -1,4 +1,5 @@
 #pragma once
+#include <rawrtcc_configuration.h>
 #include <stdbool.h> // bool
 #include <re.h>
 

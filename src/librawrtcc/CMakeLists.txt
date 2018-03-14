@@ -21,27 +21,12 @@ target_link_libraries(rawrtcc-static
 install(TARGETS rawrtcc rawrtcc-static
         DESTINATION lib)
 
-# Set debug level
-target_compile_definitions(rawrtcc PRIVATE RAWRTC_DEBUG_LEVEL=${DEBUG_LEVEL})
-target_compile_definitions(rawrtcc-static PRIVATE RAWRTC_DEBUG_LEVEL=${DEBUG_LEVEL})
+# Generate configuration header
+configure_file(${CMAKE_SOURCE_DIR}/src/include/rawrtcc_configuration.h.cmakein
+        ${CMAKE_SOURCE_DIR}/src/include/rawrtcc_configuration.h @ONLY)
 
-# Enable C99 'inttypes' in re
-target_compile_definitions(rawrtcc PRIVATE HAVE_INTTYPES_H)
-target_compile_definitions(rawrtcc-static PRIVATE HAVE_INTTYPES_H)
-
-# Generate internal headers & install them
-set(internal_header_file "${CMAKE_SOURCE_DIR}/src/include/rawrtcc_internal.h")
-set(rawrtcc_HEADERS_INCLUDE "")
-foreach (header IN LISTS rawrtcc_HEADERS)
-    string(CONCAT rawrtcc_HEADERS_INCLUDE
-            ${rawrtcc_HEADERS_INCLUDE}
-            "#include <rawrtcc/internal/"
-            ${header} ">\n")
-endforeach ()
-configure_file(${CMAKE_SOURCE_DIR}/src/include/rawrtcc_internal.h.cmakein
-        ${internal_header_file} @ONLY)
+# Install internal headers
 install(FILES ${rawrtcc_HEADERS} DESTINATION include/rawrtcc/internal)
-install(FILES ${internal_header_file} DESTINATION include)
 
 # Generate pkg-config file & install it
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/pkg-config.pc.cmakein
