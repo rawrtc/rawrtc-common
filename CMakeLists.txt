@@ -1,8 +1,15 @@
 # Project
 cmake_minimum_required(VERSION 3.2)
-# TODO: Find a way to keep this in sync with the one in rawrtcc.h
+file(STRINGS ${CMAKE_CURRENT_SOURCE_DIR}/src/include/rawrtcc.h
+        VERSION
+        REGEX "#define RAWRTC[A-Z]*_VERSION \".+\"")
+string(REGEX REPLACE
+        ".+\"(.+)\".*" "\\1"
+        VERSION "${VERSION}")
 project(librawrtcc
-        VERSION 0.0.1)
+        VERSION ${VERSION})
+set(PROJECT_AUTHOR
+        "Lennart Grahl <lennart.grahl@gmail.com>")
 set(PROJECT_DESCRIPTION
         "Common code used in RAWRTC projects.")
 set(PROJECT_URL
@@ -25,6 +32,9 @@ if (${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
     message(STATUS "enabling verbose outout")
     set(CMAKE_VERBOSE_MAKEFILE on)
 endif ()
+
+# Debug level option
+set(DEBUG_LEVEL "5" CACHE STRING "Debug level of this library.")
 
 # Use pkg-config
 find_package(PkgConfig REQUIRED)
@@ -62,4 +72,5 @@ add_custom_target(install-${PROJECT_NAME}
         COMMENT "Installing ${PROJECT_NAME}")
 
 # Walk through subdirectories
+add_subdirectory(docs)
 add_subdirectory(src)

@@ -21,6 +21,14 @@ target_link_libraries(rawrtcc-static
 install(TARGETS rawrtcc rawrtcc-static
         DESTINATION lib)
 
+# Set debug level
+target_compile_definitions(rawrtcc PRIVATE RAWRTC_DEBUG_LEVEL=${DEBUG_LEVEL})
+target_compile_definitions(rawrtcc-static PRIVATE RAWRTC_DEBUG_LEVEL=${DEBUG_LEVEL})
+
+# Enable C99 'inttypes' in re
+target_compile_definitions(rawrtcc PRIVATE HAVE_INTTYPES_H)
+target_compile_definitions(rawrtcc-static PRIVATE HAVE_INTTYPES_H)
+
 # Generate internal headers & install them
 set(internal_header_file "${CMAKE_SOURCE_DIR}/src/include/rawrtcc_internal.h")
 set(rawrtcc_HEADERS_INCLUDE "")
