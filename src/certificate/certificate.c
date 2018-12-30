@@ -1,3 +1,11 @@
+#include "certificate.h"
+#include "../utils/utils.h"
+#include <rawrtcc/certificate.h>
+#include <rawrtcc/code.h>
+#include <rawrtcc/config.h>
+#include <rawrtcc/utils.h>
+
+#include <re.h>
 #include <openssl/err.h>
 #include <openssl/rsa.h>
 #include <openssl/bn.h>
@@ -10,15 +18,13 @@
 #include <openssl/crypto.h>
 #include <openssl/bio.h>
 #include <openssl/pem.h>
+
 #include <string.h> // strlen
 #include <limits.h>
-#include <rawrtcc.h>
-#include "certificate.h"
-#include "utils.h"
 
 #define DEBUG_MODULE "certificate"
 //#define RAWRTC_DEBUG_MODULE_LEVEL 7 // Note: Uncomment this to debug this module only
-#include "debug.h"
+#include <rawrtcc/debug.h>
 
 /*
  * Default certificate options.
@@ -684,7 +690,7 @@ enum rawrtc_code rawrtc_certificate_get_pem(
     }
 
     // Copy to buffer
-    if (BIO_read(bio, pem, (int) length) < length) {
+    if (BIO_read(bio, pem, (int) length) < (int) length) {
         goto out;
     }
 
@@ -823,7 +829,7 @@ enum rawrtc_code rawrtc_certificate_get_fingerprint(
 /*
  * Copy and append a certificate to a list.
  */
-enum rawrtc_code copy_and_append_certificate(
+static enum rawrtc_code copy_and_append_certificate(
         struct list* const certificate_list, // de-referenced, not checked
         struct rawrtc_certificate* const certificate // copied
 ) {
@@ -1029,7 +1035,7 @@ char const * rawrtc_certificate_sign_algorithm_to_str(
  */
 enum rawrtc_code rawrtc_str_to_certificate_sign_algorithm(
         enum rawrtc_certificate_sign_algorithm* const algorithmp, // de-referenced
-        char const* const str
+        char const * const str
 ) {
     size_t i;
 
@@ -1051,7 +1057,7 @@ enum rawrtc_code rawrtc_str_to_certificate_sign_algorithm(
 /*
  * Get the EVP_MD* structure for a certificate sign algorithm type.
  */
-EVP_MD const * const rawrtc_get_sign_function(
+EVP_MD const* rawrtc_get_sign_function(
         enum rawrtc_certificate_sign_algorithm const type
 ) {
     switch (type) {

@@ -1,13 +1,17 @@
+#include "utils.h"
+#include <rawrtcc/code.h>
+#include <rawrtcc/utils.h>
+
+#include <re.h>
+
 #include <stdio.h> // sprintf
 #include <string.h> // strlen
 #include <stdarg.h> // va_*
-#include <rawrtcc.h>
-#include "utils.h"
 
 /*
  * Translate a rawrtc return code to a string.
  */
-char const* rawrtc_code_to_str(
+char const * rawrtc_code_to_str(
         enum rawrtc_code const code
 ) {
     switch (code) {
@@ -112,9 +116,10 @@ enum rawrtc_code rawrtc_snprintf(
         char* const formatter,
         ...
 ) {
+    int err;
     va_list args;
     va_start(args, formatter);
-    int err = re_vsnprintf(destinationp, size, formatter, args);
+    err = re_vsnprintf(destinationp, size, formatter, args);
     va_end(args);
 
     // For some reason, re_vsnprintf does return -1 on argument error
@@ -135,9 +140,10 @@ enum rawrtc_code rawrtc_sdprintf(
         char* const formatter,
         ...
 ) {
+    int err;
     va_list args;
     va_start(args, formatter);
-    int err = re_vsdprintf(destinationp, formatter, args);
+    err = re_vsdprintf(destinationp, formatter, args);
     va_end(args);
     return rawrtc_error_to_code(err);
 }

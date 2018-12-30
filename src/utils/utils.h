@@ -1,5 +1,9 @@
 #pragma once
-#include <rawrtcc.h>
+#include <rawrtcc/code.h>
+#include <rawrtcc/utils.h>
+
+#include <re.h>
+
 
 enum rawrtc_code rawrtc_bin_to_colon_hex(
     char** const destinationp, // de-referenced

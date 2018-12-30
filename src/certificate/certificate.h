@@ -1,7 +1,10 @@
 #pragma once
+#include <rawrtcc/certificate.h>
+#include <rawrtcc/code.h>
+
+#include <re.h>
 #include <openssl/evp.h> // EVP_*
 #include <openssl/x509.h> // X509
-#include <rawrtcc.h>
 
 /*
  * Maximum digest size of certificate fingerprint.
@@ -91,7 +94,7 @@ enum rawrtc_code rawrtc_tls_fingerprint_to_certificate_sign_algorithm(
     enum tls_fingerprint re_algorithm
 );
 
-EVP_MD const * const rawrtc_get_sign_function(
+EVP_MD const* rawrtc_get_sign_function(
     enum rawrtc_certificate_sign_algorithm type
 );
 
