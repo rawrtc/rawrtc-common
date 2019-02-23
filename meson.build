@@ -33,7 +33,8 @@ configuration = configuration_data()
 openssl_dep = dependency('openssl', version: '>=1.0.2', required: true)
 
 # Dependency: re
-re_dep = dependency('re',
+# Note: We need to force using our own fork until re has accepted all our patches
+re_dep = dependency('librawrre',
     version: '>=0.5.9',
     fallback: ['re', 're_dep'],
     required: true)
@@ -63,7 +64,7 @@ subdir('include')
 subdir('src')
 
 # Build library
-rawrtcc = library('rawrtcc', sources,
+rawrtcc = library(meson.project_name(), sources,
     dependencies: dependencies,
     include_directories: include_dir,
     install: true,
@@ -77,6 +78,6 @@ rawrtcc_dep = declare_dependency(
 # Generate pkg-config file
 pkg = import('pkgconfig')
 pkg.generate(rawrtcc,
-    name: 'rawrtcc',
+    name: meson.project_name(),
     description: 'Common code used in RAWRTC projects.',
     url: 'https://github.com/rawrtc/rawrtc-common')

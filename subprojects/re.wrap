@@ -1,4 +1,4 @@
 [wrap-git]
 directory = re
 url = https://github.com/rawrtc/re.git
-revision = 509d27f62f1ca2ac8858d9fe38ade5da5ce5e663
+revision = 03c181fb68c1670563d4b7ff047403be776e0943
