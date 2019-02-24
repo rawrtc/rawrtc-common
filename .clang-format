@@ -31,13 +31,13 @@ ForEachMacros:
   - LIST_FOREACH
 IncludeBlocks: Preserve
 IncludeCategories:
-  - Regex: '^"'
+  - Regex: '^"[^\.]+'
     Priority: 1
   - Regex: '^"\.\./'
     Priority: 2
-  - Regex: '^<rawrtcc/'
+  - Regex: '^<rawrtcc'
     Priority: 3
-  - Regex: '^<re.h>'
+  - Regex: '^<re\.h'
     Priority: 4
   - Regex: '.*'
     Priority: 5

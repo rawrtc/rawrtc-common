@@ -1,6 +1,5 @@
 #include <rawrtcc/code.h>
 #include <rawrtcc/message_buffer.h>
-
 #include <re.h>
 
 /*

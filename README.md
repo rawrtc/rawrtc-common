@@ -13,12 +13,13 @@ The following tools are required:
 
 * [git][git]
 * [meson][meson] >= 0.46.0
+* [ninja][ninja] >= 1.5
 * Optional: pkg-config (`pkgconf` for newer FreeBSD versions)
 
 ## Build
 
 ```bash
-cd <path-to-rawrtcdc>
+cd <path-to-rawrtcc>
 mkdir build
 meson build
 cd build
@@ -27,7 +28,7 @@ ninja
 
 ## Contributing
 
-Before creating a pull request, it is recommended to run `format-all.sh` to
+When creating a pull request, it is recommended to run `format-all.sh` to
 apply a consistent code style.
 
 
@@ -43,5 +44,5 @@ apply a consistent code style.
 [rawrtcdc]: https://github.com/rawrtc/rawrtc-data-channel
 
 [git]: https://git-scm.com
-[meson]: http://mesonbuild.com
+[meson]: https://mesonbuild.com
 [ninja]: https://ninja-build.org

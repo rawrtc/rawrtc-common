@@ -1,8 +1,6 @@
 #include <rawrtcc/code.h>
 #include <rawrtcc/utils.h>
-
 #include <re.h>
-
 #include <stdarg.h>  // va_*
 
 /*
