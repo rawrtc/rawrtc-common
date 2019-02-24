@@ -2,11 +2,6 @@
 language: c
 matrix:
   include:
-    # Mac OS 10.12
-    - os: osx
-      osx_image: xcode8.3
-      compiler: clang
-
     # Mac OS 10.13 (default)
     - os: osx
       osx_image: xcode9.4
