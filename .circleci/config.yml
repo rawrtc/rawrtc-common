@@ -140,10 +140,10 @@ jobs:
       - image: rawrtc/cross-build:windows-x86
 
   # Cross: Windows x64
-  windows-x64:
-    <<: *shared-cross
-    docker:
-      - image: rawrtc/cross-build:windows-x64
+  #windows-x64:
+  #  <<: *shared-cross
+  #  docker:
+  #    - image: rawrtc/cross-build:windows-x64
 
 
 workflows:
@@ -167,4 +167,4 @@ workflows:
       - android-27-arm
       - android-27-arm64
       - windows-x86
-      - windows-x64
+      #- windows-x64
