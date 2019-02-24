@@ -7,7 +7,6 @@ configure_file(
 
 # Install headers
 includes = files([
-    'certificate.h',
     'code.h',
     'debug.h',
     'message_buffer.h',

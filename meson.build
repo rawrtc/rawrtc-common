@@ -29,9 +29,6 @@ add_project_arguments(compiler_args, language: 'c')
 # Configuration
 configuration = configuration_data()
 
-# Dependency: OpenSSL
-openssl_dep = dependency('openssl', version: '>=1.0.2', required: true)
-
 # Dependency: re
 # Note: We need to force using our own fork until re has accepted all our patches
 re_dep = dependency('librawrre',
@@ -41,7 +38,6 @@ re_dep = dependency('librawrre',
 
 # Dependencies list
 dependencies = [
-    openssl_dep,
     re_dep,
 ]
 
