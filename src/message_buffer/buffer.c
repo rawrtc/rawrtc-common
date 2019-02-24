@@ -8,16 +8,14 @@
  */
 struct buffered_message {
     struct le le;
-    struct mbuf* buffer; // referenced
-    void* context; // referenced, nullable
+    struct mbuf* buffer;  // referenced
+    void* context;  // referenced, nullable
 };
 
 /*
  * Destructor for an existing buffered message.
  */
-static void rawrtc_message_buffer_destroy(
-        void* arg
-) {
+static void rawrtc_message_buffer_destroy(void* arg) {
     struct buffered_message* const buffered_message = arg;
 
     // Un-reference
@@ -31,9 +29,9 @@ static void rawrtc_message_buffer_destroy(
  * TODO: Add timestamp to be able to ignore old messages
  */
 enum rawrtc_code rawrtc_message_buffer_append(
-        struct list* const message_buffer,
-        struct mbuf* const buffer, // referenced
-        void* const context // referenced, nullable
+    struct list* const message_buffer,
+    struct mbuf* const buffer,  // referenced
+    void* const context  // referenced, nullable
 ) {
     struct buffered_message* buffered_message;
 
@@ -64,10 +62,9 @@ enum rawrtc_code rawrtc_message_buffer_append(
  * the message handler returned `false`.
  */
 enum rawrtc_code rawrtc_message_buffer_clear(
-        struct list* const message_buffer,
-        rawrtc_message_buffer_handler* const message_handler,
-        void* arg
-) {
+    struct list* const message_buffer,
+    rawrtc_message_buffer_handler* const message_handler,
+    void* arg) {
     struct le* le;
     bool unlink;
 

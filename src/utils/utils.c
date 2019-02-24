@@ -3,14 +3,12 @@
 
 #include <re.h>
 
-#include <stdarg.h> // va_*
+#include <stdarg.h>  // va_*
 
 /*
  * Translate a rawrtc return code to a string.
  */
-char const * rawrtc_code_to_str(
-        enum rawrtc_code const code
-) {
+char const* rawrtc_code_to_str(enum rawrtc_code const code) {
     switch (code) {
         case RAWRTC_CODE_UNKNOWN_ERROR:
             return "unknown error";
@@ -63,9 +61,7 @@ char const * rawrtc_code_to_str(
  * Translate an re error to a rawrtc code.
  * TODO: Add codes from trice_lcand_add
  */
-enum rawrtc_code rawrtc_error_to_code(
-        int const code
-) {
+enum rawrtc_code rawrtc_error_to_code(int const code) {
     switch (code) {
         case 0:
             return RAWRTC_CODE_SUCCESS;
@@ -96,10 +92,7 @@ enum rawrtc_code rawrtc_error_to_code(
  * `*destinationp` will be set to a copy of `source` and must be
  * unreferenced.
  */
-enum rawrtc_code rawrtc_strdup(
-        char** const destinationp,
-        char const * const source
-) {
+enum rawrtc_code rawrtc_strdup(char** const destinationp, char const* const source) {
     int err = str_dup(destinationp, source);
     return rawrtc_error_to_code(err);
 }
@@ -108,11 +101,7 @@ enum rawrtc_code rawrtc_strdup(
  * Print a formatted string to a dynamically allocated buffer.
  * `*destinationp` must be unreferenced.
  */
-enum rawrtc_code rawrtc_sdprintf(
-        char** const destinationp,
-        char* const formatter,
-        ...
-) {
+enum rawrtc_code rawrtc_sdprintf(char** const destinationp, char* const formatter, ...) {
     int err;
     va_list args;
     va_start(args, formatter);
