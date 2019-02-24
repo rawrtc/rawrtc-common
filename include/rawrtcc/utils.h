@@ -1,6 +1,5 @@
 #pragma once
 #include "code.h"
-
 #include <re.h>
 
 /// Array container.
