@@ -32,7 +32,7 @@ configuration = configuration_data()
 # Dependency: re
 # Note: We need to force using our own fork until re has accepted all our patches
 re_dep = dependency('librawrre',
-    version: '>=0.5.9',
+    version: '>=0.6.0',
     fallback: ['re', 're_dep'],
     required: true)
 
