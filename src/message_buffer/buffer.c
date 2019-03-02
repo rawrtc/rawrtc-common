@@ -1,13 +1,21 @@
-#include <rawrtcc.h>
-#include "message_buffer.h"
+#include <rawrtcc/code.h>
+#include <rawrtcc/message_buffer.h>
+#include <re.h>
+
+/*
+ * Message buffer.
+ */
+struct buffered_message {
+    struct le le;
+    struct mbuf* buffer;  // referenced
+    void* context;  // referenced, nullable
+};
 
 /*
  * Destructor for an existing buffered message.
  */
-static void rawrtc_message_buffer_destroy(
-        void* arg
-) {
-    struct rawrtc_buffered_message* const buffered_message = arg;
+static void rawrtc_message_buffer_destroy(void* arg) {
+    struct buffered_message* const buffered_message = arg;
 
     // Un-reference
     mem_deref(buffered_message->context);
@@ -15,16 +23,16 @@ static void rawrtc_message_buffer_destroy(
 }
 
 /*
- * Create a message buffer.
+ * Create a message buffer and add it to a list.
  *
  * TODO: Add timestamp to be able to ignore old messages
  */
 enum rawrtc_code rawrtc_message_buffer_append(
-        struct list* const message_buffer,
-        struct mbuf* const buffer, // referenced
-        void* const context // referenced, nullable
+    struct list* const message_buffer,
+    struct mbuf* const buffer,  // referenced
+    void* const context  // referenced, nullable
 ) {
-    struct rawrtc_buffered_message* buffered_message;
+    struct buffered_message* buffered_message;
 
     // Check arguments
     if (!message_buffer || !buffer) {
@@ -53,10 +61,9 @@ enum rawrtc_code rawrtc_message_buffer_append(
  * the message handler returned `false`.
  */
 enum rawrtc_code rawrtc_message_buffer_clear(
-        struct list* const message_buffer,
-        rawrtc_message_buffer_handler* const message_handler,
-        void* arg
-) {
+    struct list* const message_buffer,
+    rawrtc_message_buffer_handler* const message_handler,
+    void* arg) {
     struct le* le;
     bool unlink;
 
@@ -68,7 +75,7 @@ enum rawrtc_code rawrtc_message_buffer_clear(
     // Handle each message
     le = list_head(message_buffer);
     while (le != NULL) {
-        struct rawrtc_buffered_message* const buffered_message = le->data;
+        struct buffered_message* const buffered_message = le->data;
 
         // Handle message
         unlink = message_handler(buffered_message->buffer, buffered_message->context, arg);
