@@ -1,12 +1,5 @@
 #pragma once
 #include "code.h"
-#include <re.h>
-
-/// Array container.
-struct rawrtc_array_container {
-    size_t n_items;
-    void* items[];
-};
 
 /// Translate a rawrtc return code to a string.
 char const* rawrtc_code_to_str(enum rawrtc_code const code);
