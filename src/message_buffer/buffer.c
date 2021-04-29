@@ -76,6 +76,7 @@ enum rawrtc_code rawrtc_message_buffer_clear(
     le = list_head(message_buffer);
     while (le != NULL) {
         struct buffered_message* const buffered_message = le->data;
+        struct le* next = le->next;
 
         // Handle message
         unlink = message_handler(buffered_message->buffer, buffered_message->context, arg);
@@ -84,7 +85,7 @@ enum rawrtc_code rawrtc_message_buffer_clear(
         }
 
         // Get next message
-        le = le->next;
+        le = next;
 
         // Remove message
         if (unlink) {
